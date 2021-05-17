@@ -18,5 +18,5 @@ data['people'].append({
     'from': 'Alabama'
 })
 
-with open('input.txt', 'w') as outfile:
+with open('/opt/sensor/inputinput.txt', 'w') as outfile:
     json.dump(data, outfile)
