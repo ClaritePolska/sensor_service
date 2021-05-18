@@ -2,7 +2,6 @@ import time
 import atexit
 import ads1015
 import RPi.GPIO as GPIO
-import os
 import time
 from datetime import datetime
 MICS6814_HEATER_PIN = 24
@@ -146,6 +145,6 @@ try:
         with open('/var/qiot/input/GAS/' +'GAS_' + current_clock + '.json', 'w') as outfile: 
             outfile.write("{" +"\"dateTime\" : " +"\"" + dataTimeZone + "\"" + "," + str(readings) + "}")
             outfile.close()
-        time.sleep(os.environ.get("SLEEP_TIME"))
+        time.sleep(10.0)
 except KeyboardInterrupt:
     pass

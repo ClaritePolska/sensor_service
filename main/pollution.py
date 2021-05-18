@@ -2,7 +2,6 @@ import time
 import atexit
 import ads1015
 import RPi.GPIO as GPIO
-import os
 import time
 from datetime import datetime
 from enviroplus import gas
@@ -167,7 +166,7 @@ try:
         with open('/var/qiot/input/POLLUTION/' +'POL_' + current_clock + '.json', 'w') as outfile: 
             json.dump(returnDict, outfile)
             outfile.close()
-        time.sleep(os.environ.get("SLEEP_TIME"))
+        time.sleep(10.0)
 except KeyboardInterrupt:
     pass
             
