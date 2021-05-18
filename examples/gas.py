@@ -5,9 +5,6 @@ from enviroplus import gas
 import logging
 import json
 
-curr_time = time.localtime()
-curr_clock = time.strftime("%Y%m%d_%H%M%S_%Z%z", curr_time)
-
 logging.basicConfig(
     format='%(asctime)s.%(msecs)03d %(levelname)-8s %(message)s',
     level=logging.INFO,
