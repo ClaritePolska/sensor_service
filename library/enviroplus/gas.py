@@ -24,12 +24,10 @@ class Mics6814Reading(object):
         self.adc = adc
 
     def __repr__(self):
-        fmt = """Oxidising: {ox:05.02f} Ohms
-Reducing: {red:05.02f} Ohms
-NH3: {nh3:05.02f} Ohms"""
-        if self.adc is not None:
-            fmt += """
-ADC: {adc:05.02f} Volts
+        fmt = """"Oxidising" : {ox:05.02f}
+"Reducing" : {red:05.02f}, 
+"NH3" : {nh3:05.02f},
+"ADC": {adc:05.02f}
 """
         return fmt.format(
             ox=self.oxidising,
@@ -38,7 +36,6 @@ ADC: {adc:05.02f} Volts
             adc=self.adc)
 
     __str__ = __repr__
-
 
 def setup():
     global adc, _is_setup
