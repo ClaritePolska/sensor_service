@@ -144,7 +144,7 @@ try:
         current_clock = current_time.strftime("%Y%m%d_%H%M%S")
         dataTime = current_time.strftime("%Y-%m-%dT%H:%M:%S")
         readings = read_all()
-        with open('/opt/sensor/input/' +'GAS_' + current_clock + '.json', 'w') as outfile: 
+        with open('/var/qiot/input/' +'GAS_' + current_clock + '.json', 'w') as outfile: 
             outfile.write("{" +"\"dateTime\" : " +"\"" + dataTimeZone + "\"" + "," + str(readings) + "}")
             outfile.close()
         time.sleep(1.0)
