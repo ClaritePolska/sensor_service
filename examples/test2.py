@@ -1,14 +1,17 @@
 """Read the MICS6814 via an ads1015 ADC"""
 
+import logging
 import time
 import atexit
-import ads1015
-import RPi.GPIO as GPIO
+from datetime import datetime
+current_time = datetime.now()
+#import ads1015
+#import RPi.GPIO as GPIO
 
 MICS6814_HEATER_PIN = 24
 MICS6814_GAIN = 6.144
 
-ads1015.I2C_ADDRESS_DEFAULT = ads1015.I2C_ADDRESS_ALTERNATE
+#ads1015.I2C_ADDRESS_DEFAULT = ads1015.I2C_ADDRESS_ALTERNATE
 _is_setup = False
 _adc_enabled = False
 _adc_gain = 6.148
@@ -43,15 +46,15 @@ def setup():
         return
     _is_setup = True
 
-    adc = ads1015.ADS1015(i2c_addr=0x49)
+    adc = 123 #ads1015.ADS1015(i2c_addr=0x49)
     adc.set_mode('single')
     adc.set_programmable_gain(MICS6814_GAIN)
     adc.set_sample_rate(1600)
 
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(MICS6814_HEATER_PIN, GPIO.OUT)
-    GPIO.output(MICS6814_HEATER_PIN, 1)
+    #GPIO.setwarnings(False)
+    #GPIO.setmode(GPIO.BCM)
+    #GPIO.setup(MICS6814_HEATER_PIN, GPIO.OUT)
+    #GPIO.output(MICS6814_HEATER_PIN, 1)
     atexit.register(cleanup)
 
 
@@ -67,16 +70,16 @@ def set_adc_gain(value):
     _adc_gain = value
 
 
-def cleanup():
-    GPIO.output(MICS6814_HEATER_PIN, 0)
+def cleanup():""
+    #GPIO.output(MICS6814_HEATER_PIN, 0)
 
 
 def read_all():
     """Return gas resistence for oxidising, reducing and NH3"""
-    setup()
-    ox = adc.get_voltage('in0/gnd')
-    red = adc.get_voltage('in1/gnd')
-    nh3 = adc.get_voltage('in2/gnd')
+    #setup()
+    ox = 0.305543
+    red = 1.905543
+    nh3 =  0.805543
 
     try:
         ox = (ox * 56000) / (3.3 - ox)
@@ -135,3 +138,15 @@ def read_adc():
     """Return spare ADC channel value"""
     setup()
     return read_all().adc
+
+readings = read_all()
+
+logging.basicConfig(
+    format='%(asctime)s.%(msecs)03d %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y%m%d_%H%M%S_%Z%z')
+
+#logging.info(str(readings))
+dataTimeZone = current_time.strftime('%Y-%m-%dT%H:%M:%S.%f%zZ')
+
+print( "{" +"\"dateTime\" : " +"\"" + dataTimeZone + "\"" + "," + str(readings) + "}")
