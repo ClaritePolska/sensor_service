@@ -147,6 +147,6 @@ try:
         with open('/var/qiot/input/' +'GAS_' + current_clock + '.json', 'w') as outfile: 
             outfile.write("{" +"\"dateTime\" : " +"\"" + dataTimeZone + "\"" + "," + str(readings) + "}")
             outfile.close()
-        time.sleep(1.0)
+        time.sleep(10.0)
 except KeyboardInterrupt:
     pass
