@@ -5,6 +5,11 @@ import RPi.GPIO as GPIO
 from os import close
 import time
 from datetime import datetime
+##############################
+from enviroplus import gas
+from ReturnValue import return_simple, return_map
+from pms5003 import PMS5003, PMS5003Data, ReadTimeoutError
+import json
 
 MICS6814_HEATER_PIN = 24
 MICS6814_GAIN = 6.144
@@ -143,10 +148,28 @@ try:
         dataTimeZone = current_time.strftime('%Y-%m-%dT%H:%M:%S.%f%zZ')
         current_clock = current_time.strftime("%Y%m%d_%H%M%S")
         dataTime = current_time.strftime("%Y-%m-%dT%H:%M:%S")
-        readings = read_all()
-        with open('/var/qiot/input/GAS/' +'GAS_' + current_clock + '.json', 'w') as outfile: 
-            outfile.write("{" +"\"dateTime\" : " +"\"" + dataTimeZone + "\"" + "," + str(readings) + "}")
+        pms5003 = PMS5003()
+        psm5003data = pms5003.read()
+        readings=psm5003data.data
+        returnDict = {
+            'dateTime': dataTimeZone,
+            'pm1_0':readings[0],
+            'pm2_5':readings[1],
+            'pm10':readings[2],
+            'pm1_0_atm':readings[3],
+            'pm2_5_atm':readings[4],
+            'pm10_atm':readings[5],
+            'gt0_3um':readings[6],
+            'gt0_5um':readings[7],
+            'gt1_0um':readings[8],
+            'gt2_5um':readings[9],
+            'gt5_0um':readings[10],
+            'gt10um':readings[11]
+        }
+        with open('/var/qiot/input/POLLUTION/' +'POL_' + current_clock + '.json', 'w') as outfile: 
+            json.dump(returnDict, outfile)
             outfile.close()
         time.sleep(10.0)
 except KeyboardInterrupt:
     pass
+            
