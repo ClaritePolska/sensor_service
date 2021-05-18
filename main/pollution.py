@@ -5,9 +5,7 @@ import RPi.GPIO as GPIO
 from os import close
 import time
 from datetime import datetime
-##############################
 from enviroplus import gas
-from ReturnValue import return_simple, return_map
 from pms5003 import PMS5003, PMS5003Data, ReadTimeoutError
 import json
 
