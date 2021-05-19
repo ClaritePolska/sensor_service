@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import time
 import atexit
 import ads1015
