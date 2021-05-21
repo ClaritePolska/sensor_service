@@ -12,8 +12,7 @@ sudo podman push [IMEAGE ID] quay.io/$nameOfUser/sensorservice-base-aarch64:base
 
 Use Dockerfile with path: `Docker_program\Dockerfile`
 ```
- sudo podman build -t quay.io/clarite_qiot/sensorservice-aarch64:stable .
- clarite_qiot .
+ sudo podman build -t quay.io/$nameOfUser/sensorservice-aarch64:stable .
 
 ```
 ```
