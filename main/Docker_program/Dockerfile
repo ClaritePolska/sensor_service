@@ -1,4 +1,4 @@
-FROM quay.io/michal.studzinski/qiot-sensor-service-base:33-aarch64
+FROM quay.io/repository/clarite_qiot/sensorservice-base-aarch64:base
 RUN dnf -y install git && \
 	git clone https://github.com/ClaritePolska/sensor_service && \
 	dnf clean all && \
