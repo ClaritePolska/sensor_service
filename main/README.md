@@ -6,7 +6,7 @@ Use Dockerfile with path: `Docker_base\Dockerfile`
  sudo podman build -t quay.io/repository/$nameOfUser/sensorservice-base-aarch64:base .
 ```
 ```
-sudo podman push quay.io/$nameOfUser/sensorservice-base-aarch64:base
+sudo podman push [IMEAGE ID] quay.io/$nameOfUser/sensorservice-base-aarch64:base
 ```
 ## 2. Build image with Sensor Service
 
@@ -17,7 +17,7 @@ Use Dockerfile with path: `Docker_program\Dockerfile`
 
 ```
 ```
-sudo podman push quay.io/repository/$nameOfUser/sensorservice-aarch64:stable
+sudo podman push [IMEAGE ID] quay.io/repository/$nameOfUser/sensorservice-aarch64:stable
 ```
 ## 3. Run image
 ```
