@@ -3,7 +3,7 @@
 ## 1. Build (base) first image
 Use Dockerfile with path: `Docker_base\Dockerfile`
 ```
- sudo podman build -t quay.io/repository/$nameOfUser/sensorservice-base-aarch64:base .
+ sudo podman build -t quay.io/$nameOfUser/sensorservice-base-aarch64:base .
 ```
 ```
 sudo podman push [IMEAGE ID] quay.io/$nameOfUser/sensorservice-base-aarch64:base
@@ -12,12 +12,12 @@ sudo podman push [IMEAGE ID] quay.io/$nameOfUser/sensorservice-base-aarch64:base
 
 Use Dockerfile with path: `Docker_program\Dockerfile`
 ```
- sudo podman build -t quay.io/repository/$nameOfUser/sensorservice-aarch64:stable .
+ sudo podman build -t quay.io/clarite_qiot/sensorservice-aarch64:stable .
  clarite_qiot .
 
 ```
 ```
-sudo podman push [IMEAGE ID] quay.io/repository/$nameOfUser/sensorservice-aarch64:stable
+sudo podman push [IMEAGE ID] quay.io/$nameOfUser/sensorservice-aarch64:stable
 ```
 ## 3. Run image
 ```
